@@ -6,14 +6,18 @@ function MainHeader() {
   return (
     <header className="MainHeader">
       <img src={logo} className="App-logo" alt="logo" />
-      <ul>
-        <li>
-          <NavLink to="/">Profile</NavLink>
-        </li>
-        <li>
-          <NavLink to="/edit">Edit</NavLink>
-        </li>
-      </ul>
+      <nav>
+        <ul>
+          <li>
+            <NavLink exact={true} to="/">
+              Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/edit">Edit</NavLink>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
