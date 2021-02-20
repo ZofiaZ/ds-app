@@ -1,8 +1,8 @@
 import React from "react";
-
 import Form from "@atlaskit/form";
 import Button from "@atlaskit/button";
 import TextFieldWithValidation from "../form/TextFieldWithValidation";
+import { isValidEmail, containsOnlyNameCharacters } from "../utils/validators";
 
 const handleSubmit = (data: { firstname: string; lastname: string }) => {
   console.log("form data", data);
@@ -17,17 +17,26 @@ function EditProfile() {
           <form {...formProps}>
             <TextFieldWithValidation
               name="firstname"
-              label="First name"
+              label="first name"
               autocomplete="given-name"
               minCharacters={2}
               maxCharacters={30}
+              isFormatValid={containsOnlyNameCharacters}
             />
             <TextFieldWithValidation
               name="lastname"
-              label="Last name"
+              label="last name"
               autocomplete="family-name"
               minCharacters={2}
               maxCharacters={40}
+              isFormatValid={containsOnlyNameCharacters}
+            />
+            <TextFieldWithValidation
+              name="email"
+              label="email"
+              autocomplete="email"
+              maxCharacters={70}
+              isFormatValid={isValidEmail}
             />
             <Button type="submit" appearance="primary" isDisabled={submitting}>
               Submit

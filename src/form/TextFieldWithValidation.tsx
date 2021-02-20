@@ -7,15 +7,23 @@ type PropTypes = {
   name: string;
   label: string;
   autocomplete: string;
+  type?: string;
   minCharacters?: number;
   maxCharacters?: number;
+  isFormatValid?: (value?: string) => boolean;
 };
 
-const validate = (minCharacters?: number, maxCharacters?: number) => (
-  value?: string
-) => {
+const validate = (
+  minCharacters?: number,
+  maxCharacters?: number,
+  isFormatValid?: (value?: string) => boolean
+) => (value?: string) => {
   if (!value || !value.trim()) {
     return;
+  }
+
+  if (isFormatValid && !isFormatValid(value)) {
+    return VALIDATION_TYPES.FORMAT;
   }
 
   if (minCharacters && value.trim().length < minCharacters) {
@@ -32,7 +40,9 @@ const validate = (minCharacters?: number, maxCharacters?: number) => (
 const TextFieldWithValidation = ({
   name,
   label,
-  autocomplete,
+  autocomplete = "off",
+  type = "text",
+  isFormatValid,
   minCharacters,
   maxCharacters,
 }: PropTypes) => {
@@ -42,15 +52,13 @@ const TextFieldWithValidation = ({
     setIsBlurred(true);
   };
 
-  console.log(isBlurred);
-
   return (
     <Field
       name={name}
       defaultValue=""
       label={label}
       isRequired
-      validate={validate(minCharacters, maxCharacters)}
+      validate={validate(minCharacters, maxCharacters, isFormatValid)}
     >
       {({ fieldProps, error }) => {
         return (
@@ -59,6 +67,7 @@ const TextFieldWithValidation = ({
               {...fieldProps}
               autoComplete={autocomplete}
               onBlur={handleBlur}
+              type={type}
             />
             {isBlurred && error === VALIDATION_TYPES.TOO_SHORT && (
               <ErrorMessage>
@@ -69,6 +78,9 @@ const TextFieldWithValidation = ({
               <ErrorMessage>
                 {label} needs to have maximum {maxCharacters} characters
               </ErrorMessage>
+            )}
+            {isBlurred && error === VALIDATION_TYPES.FORMAT && (
+              <ErrorMessage>Please enter a valid {label}</ErrorMessage>
             )}
           </>
         );
