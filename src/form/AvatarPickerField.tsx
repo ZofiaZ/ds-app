@@ -6,14 +6,17 @@ import Button from "@atlaskit/button";
 import { Field } from "@atlaskit/form";
 import { getStoredValue } from "../utils/sessionStorage";
 
-const name = "avatar";
+type PropTypes = {
+  name: string;
+  label: string;
+};
 
-const AvatarPickerField = () => {
+const AvatarPickerField = ({ name, label }: PropTypes) => {
   const [isOpen, setIsOpen] = useState(false);
   const [imageDataURI, setImageDataURI] = useState(getStoredValue(name));
 
   return (
-    <Field name={name} defaultValue="" label="avatar">
+    <Field name={name} defaultValue="" label={label}>
       {({ fieldProps }) => (
         <>
           <div className="AvatarPicker-container">

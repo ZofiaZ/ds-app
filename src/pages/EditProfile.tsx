@@ -73,7 +73,7 @@ function EditProfile() {
 
             <TextAreaField name="about" label="about" />
 
-            <AvatarPickerField />
+            <AvatarPickerField name="avatar" label="avatar" />
 
             <FormFooter>
               <Button
