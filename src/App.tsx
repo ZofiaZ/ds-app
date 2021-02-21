@@ -8,6 +8,7 @@ import MainFooter from "./layout/MainFooter";
 const containerStyles = {
   maxWidth: "400px",
   margin: "0 auto",
+  padding: "20px",
 };
 
 function App() {

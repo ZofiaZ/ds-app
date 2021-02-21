@@ -1,4 +1,6 @@
-export const safelyGetSessionStorage = () => {
+import { FIELDS } from "../utils/fieldsSettings";
+
+const safelyGetSessionStorage = () => {
   try {
     return sessionStorage;
   } catch {
@@ -16,7 +18,9 @@ export const getStoredValue = (key: string) => {
   return sessionStorage.getItem(key) || "";
 };
 
-export const saveInSessionStorage = (data: { [key: string]: string }) => {
+export const saveProfileDataInSessionStorage = (data: {
+  [key: string]: string;
+}) => {
   const sessionStorage = safelyGetSessionStorage();
 
   if (!sessionStorage) {
@@ -26,4 +30,13 @@ export const saveInSessionStorage = (data: { [key: string]: string }) => {
   Object.keys(data).forEach((key) => {
     sessionStorage.setItem(key, data[key]);
   });
+};
+
+export const getProfileDataFromSessionStorage = () => {
+  return Object.keys(FIELDS).reduce((acc, field) => {
+    return {
+      ...acc,
+      [FIELDS[field].name]: getStoredValue(FIELDS[field].name),
+    };
+  }, {});
 };

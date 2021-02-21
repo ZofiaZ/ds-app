@@ -11,7 +11,6 @@ import {
   isValidPhoneNumber,
   requiredValidator,
 } from "../utils/validators";
-import { saveInSessionStorage } from "../utils/sessionStorage";
 import { FIELDS } from "../utils/fieldsSettings";
 import { postProfileData } from "../utils/api";
 
@@ -21,7 +20,6 @@ const handleSubmit = (data: { [key: string]: string }) => {
   console.log("form data", data);
 
   const requiredErrors = requiredValidator(data);
-  saveInSessionStorage(data);
 
   if (Object.keys(requiredErrors).length > 0) {
     return Promise.resolve(requiredErrors);
