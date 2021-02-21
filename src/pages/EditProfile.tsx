@@ -8,6 +8,7 @@ import {
   isValidPhoneNumber,
 } from "../utils/validators";
 import { DatePicker } from "@atlaskit/datetime-picker";
+import TextArea from "@atlaskit/textarea";
 
 const handleSubmit = (data: { firstname: string; lastname: string }) => {
   console.log("form data", data);
@@ -65,6 +66,20 @@ function EditProfile() {
                 </>
               )}
             </Field>
+            <Field<string, HTMLTextAreaElement>
+              name="about"
+              label="about"
+              defaultValue=""
+              isRequired
+            >
+              {({ fieldProps, error }) => (
+                <>
+                  <TextArea {...fieldProps} />
+                  {error && <ErrorMessage>{error}</ErrorMessage>}
+                </>
+              )}
+            </Field>
+
             <FormFooter>
               <Button
                 type="submit"

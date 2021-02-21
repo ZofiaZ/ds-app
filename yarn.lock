@@ -165,6 +165,16 @@
     "@babel/runtime" "^7.0.0"
     "@emotion/core" "^10.0.9"
 
+"@atlaskit/textarea@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@atlaskit/textarea/-/textarea-4.0.1.tgz#d5da5298cf8c2e2d0327b816e770971cdda7249d"
+  integrity sha512-Gf6mrlTcytCdF+Q+V+37348vbuKDRyqF3mM+zkmniMWIkpkPDVJvK0xqcjqK5zS2fZuMuNWmXSr6hL3bDyFqbA==
+  dependencies:
+    "@atlaskit/analytics-next" "^8.0.0"
+    "@atlaskit/theme" "^11.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/core" "^10.0.9"
+
 "@atlaskit/textfield@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@atlaskit/textfield/-/textfield-5.0.0.tgz#a5735fd95d2dfbc19621bb4cdf95f0d303a31c7d"
