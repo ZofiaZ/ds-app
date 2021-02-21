@@ -1,18 +1,28 @@
 import React from "react";
-import Form, { ErrorMessage, Field, FormFooter } from "@atlaskit/form";
+import Form, { FormFooter } from "@atlaskit/form";
 import Button from "@atlaskit/button";
-import AvatarPicker from "../form/AvatarPicker";
+import DatePickerField from "../form/DatePickerField";
+import TextAreaField from "../form/TextAreaField";
+import AvatarPickerField from "../form/AvatarPickerField";
 import TextFieldWithValidation from "../form/TextFieldWithValidation";
 import {
   isValidEmail,
   containsOnlyNameCharacters,
   isValidPhoneNumber,
 } from "../utils/validators";
-import { DatePicker } from "@atlaskit/datetime-picker";
-import TextArea from "@atlaskit/textarea";
+import { safelyGetSessionStorage } from "../utils/sessionStorage";
 
-const handleSubmit = (data: { firstname: string; lastname: string }) => {
+const handleSubmit = (data: { [key: string]: string }) => {
   console.log("form data", data);
+  const sessionStorage = safelyGetSessionStorage();
+
+  if (!sessionStorage) {
+    return;
+  }
+
+  Object.keys(data).forEach((key) => {
+    sessionStorage.setItem(key, data[key]);
+  });
 };
 
 function EditProfile() {
@@ -59,29 +69,11 @@ function EditProfile() {
               inputmode="tel"
               helpText="needs to start with country prefix, for example +44 for UK numbers"
             />
-            <Field name="DoB" label="date of birth" defaultValue="" isRequired>
-              {({ fieldProps, error }) => (
-                <>
-                  <DatePicker {...fieldProps} locale="en-GB" />
-                  {error && <ErrorMessage>{error}</ErrorMessage>}
-                </>
-              )}
-            </Field>
-            <Field<string, HTMLTextAreaElement>
-              name="about"
-              label="about"
-              defaultValue=""
-              isRequired
-            >
-              {({ fieldProps, error }) => (
-                <>
-                  <TextArea {...fieldProps} />
-                  {error && <ErrorMessage>{error}</ErrorMessage>}
-                </>
-              )}
-            </Field>
+            <DatePickerField name="dob" label="date of birth" />
 
-            <AvatarPicker />
+            <TextAreaField name="about" label="about" />
+
+            <AvatarPickerField />
 
             <FormFooter>
               <Button

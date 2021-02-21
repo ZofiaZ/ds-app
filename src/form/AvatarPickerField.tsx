@@ -4,15 +4,16 @@ import Avatar from "@atlaskit/avatar";
 import { ModalTransition } from "@atlaskit/modal-dialog";
 import Button from "@atlaskit/button";
 import { Field } from "@atlaskit/form";
+import { getStoredValue } from "../utils/sessionStorage";
 
-// const avatars: Array<Avatar> = [{ dataURI: "some-data-uri" }];
+const name = "avatar";
 
-const AvatarPicker = () => {
+const AvatarPickerField = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [imageDataURI, setImageDataURI] = useState("");
+  const [imageDataURI, setImageDataURI] = useState(getStoredValue(name));
 
   return (
-    <Field name="avatar" defaultValue="" label="avatar">
+    <Field name={name} defaultValue="" label="avatar">
       {({ fieldProps }) => (
         <>
           <div className="AvatarPicker-container">
@@ -22,22 +23,17 @@ const AvatarPicker = () => {
                 setIsOpen(true);
               }}
             >
-              change image
+              {imageDataURI ? "change image" : "add image"}
             </Button>
           </div>
           <ModalTransition>
             {isOpen && (
               <AvatarPickerDialog
                 avatars={[]}
-                onImagePicked={(selectedImage, crop) => {
-                  console.log("onImagePicked");
-                }}
                 onAvatarPicked={(selectedAvatar) => {
-                  console.log("onAvatarPicked", selectedAvatar.dataURI);
                   setImageDataURI(selectedAvatar.dataURI);
                 }}
                 onImagePickedDataURI={(exportedImg) => {
-                  console.log("onImagePickedDataURI");
                   setImageDataURI(exportedImg);
                   fieldProps.onChange(exportedImg);
                   setIsOpen(false);
@@ -54,4 +50,4 @@ const AvatarPicker = () => {
   );
 };
 
-export default AvatarPicker;
+export default AvatarPickerField;
