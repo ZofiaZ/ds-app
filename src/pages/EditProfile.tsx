@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import Form, { FormFooter } from "@atlaskit/form";
 import Button from "@atlaskit/button";
 import DatePickerField from "../form/DatePickerField";
@@ -16,23 +17,26 @@ import { postProfileData } from "../utils/api";
 
 const { FIRST_NAME, LAST_NAME, PHONE, EMAIL, DOB, ABOUT, AVATAR } = FIELDS;
 
-const handleSubmit = (data: { [key: string]: string }) => {
-  console.log("form data", data);
-
+const handleSubmit = (history: RouteComponentProps["history"]) => async (data: {
+  [key: string]: string;
+}) => {
   const requiredErrors = requiredValidator(data);
 
   if (Object.keys(requiredErrors).length > 0) {
     return Promise.resolve(requiredErrors);
   }
 
-  postProfileData(data);
+  await postProfileData(data);
+  history.push("/");
 };
 
-function EditProfile() {
+const EditProfile: React.FunctionComponent<RouteComponentProps> = ({
+  history,
+}) => {
   return (
     <div className="EditProfile">
       <h1>Edit Profile</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit(history)}>
         {({ formProps, submitting }) => (
           <form {...formProps}>
             <TextFieldWithValidation
@@ -92,6 +96,6 @@ function EditProfile() {
       </Form>
     </div>
   );
-}
+};
 
-export default EditProfile;
+export default withRouter(EditProfile);

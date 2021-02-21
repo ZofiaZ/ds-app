@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@atlaskit/avatar";
+import Spinner from "@atlaskit/spinner";
 import { getProfileData } from "../utils/api";
 import { FIELDS } from "../utils/fieldsSettings";
 
@@ -19,8 +20,8 @@ function PreviewProfile() {
   return (
     <div className="PreviewProfile">
       <h1>Preview Profile</h1>
-
-      {data?.email ? (
+      {!data && <Spinner size="large" />}
+      {data && data.email && (
         <>
           <Avatar src={data.avatar || ""} size="xxlarge" />
           <dl>
@@ -50,9 +51,8 @@ function PreviewProfile() {
             </div>
           </dl>
         </>
-      ) : (
-        <Link to="/edit">Create Profile</Link>
       )}
+      {data && !data.email && <Link to="/edit">Create Profile</Link>}
     </div>
   );
 }
