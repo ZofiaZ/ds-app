@@ -28,7 +28,7 @@ function EditProfile() {
               minCharacters={2}
               maxCharacters={30}
               isFormatValid={containsOnlyNameCharacters}
-              customFormatError="Only latin a-z letters and characters: . - ' are allowed"
+              helpText="Only latin a-z letters and characters: . - ' are allowed"
             />
             <TextFieldWithValidation
               name="lastname"
@@ -37,7 +37,7 @@ function EditProfile() {
               minCharacters={2}
               maxCharacters={40}
               isFormatValid={containsOnlyNameCharacters}
-              customFormatError="Only latin a-z letters and characters: . - ' are allowed"
+              helpText="Only latin a-z letters and characters: . - ' are allowed"
             />
             <TextFieldWithValidation
               name="email"

@@ -6,7 +6,7 @@ import * as VALIDATION_TYPES from "../utils/validationTypes";
 type PropTypes = {
   name: string;
   label: string;
-  autocomplete: string;
+  autocomplete?: string;
   type?: string;
   minCharacters?: number;
   maxCharacters?: number;
