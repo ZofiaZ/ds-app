@@ -9,20 +9,25 @@ import {
   isValidEmail,
   containsOnlyNameCharacters,
   isValidPhoneNumber,
+  requiredValidator,
 } from "../utils/validators";
-import { safelyGetSessionStorage } from "../utils/sessionStorage";
+import { saveInSessionStorage } from "../utils/sessionStorage";
+import { FIELDS } from "../utils/fieldsSettings";
+import { postProfileData } from "../utils/api";
+
+const { FIRST_NAME, LAST_NAME, PHONE, EMAIL, DOB, ABOUT, AVATAR } = FIELDS;
 
 const handleSubmit = (data: { [key: string]: string }) => {
   console.log("form data", data);
-  const sessionStorage = safelyGetSessionStorage();
 
-  if (!sessionStorage) {
-    return;
+  const requiredErrors = requiredValidator(data);
+  saveInSessionStorage(data);
+
+  if (Object.keys(requiredErrors).length > 0) {
+    return Promise.resolve(requiredErrors);
   }
 
-  Object.keys(data).forEach((key) => {
-    sessionStorage.setItem(key, data[key]);
-  });
+  postProfileData(data);
 };
 
 function EditProfile() {
@@ -33,47 +38,47 @@ function EditProfile() {
         {({ formProps, submitting }) => (
           <form {...formProps}>
             <TextFieldWithValidation
-              name="firstname"
-              label="first name"
+              name={FIRST_NAME.name}
+              label={FIRST_NAME.label}
               autocomplete="given-name"
               minCharacters={2}
               maxCharacters={30}
               isFormatValid={containsOnlyNameCharacters}
-              helpText="Only latin a-z letters and characters: . - ' are allowed"
+              helpText={FIRST_NAME.helpText}
             />
             <TextFieldWithValidation
-              name="lastname"
-              label="last name"
+              name={LAST_NAME.name}
+              label={LAST_NAME.label}
               autocomplete="family-name"
               minCharacters={2}
               maxCharacters={40}
               isFormatValid={containsOnlyNameCharacters}
-              helpText="Only latin a-z letters and characters: . - ' are allowed"
+              helpText={LAST_NAME.helpText}
             />
             <TextFieldWithValidation
-              name="email"
-              label="email"
+              name={EMAIL.name}
+              label={EMAIL.label}
               autocomplete="email"
               maxCharacters={70}
               isFormatValid={isValidEmail}
               inputmode="email"
             />
             <TextFieldWithValidation
-              name="phonenumber"
-              label="phone number"
+              name={PHONE.name}
+              label={PHONE.label}
               autocomplete="tel"
               minCharacters={6}
               maxCharacters={16}
               isFormatValid={isValidPhoneNumber}
               type="tel"
               inputmode="tel"
-              helpText="needs to start with country prefix, for example +44 for UK numbers"
+              helpText={PHONE.helpText}
             />
-            <DatePickerField name="dob" label="date of birth" />
+            <DatePickerField name={DOB.name} label={DOB.label} />
 
-            <TextAreaField name="about" label="about" />
+            <TextAreaField name={ABOUT.name} label={ABOUT.label} />
 
-            <AvatarPickerField name="avatar" label="avatar" />
+            <AvatarPickerField name={AVATAR.name} label={AVATAR.label} />
 
             <FormFooter>
               <Button

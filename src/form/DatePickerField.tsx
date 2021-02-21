@@ -2,6 +2,7 @@ import React from "react";
 import { Field, ErrorMessage } from "@atlaskit/form";
 import { DatePicker } from "@atlaskit/datetime-picker";
 import { getStoredValue } from "../utils/sessionStorage";
+import * as VALIDATION_TYPES from "../utils/validationTypes";
 
 type PropTypes = {
   name: string;
@@ -15,12 +16,17 @@ const DatePickerField = ({ name, label }: PropTypes) => (
     defaultValue={getStoredValue(name)}
     isRequired
   >
-    {({ fieldProps, error }) => (
-      <>
-        <DatePicker {...fieldProps} locale="en-GB" />
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-      </>
-    )}
+    {({ fieldProps, error }) => {
+      console.log("error", error, fieldProps);
+      return (
+        <>
+          <DatePicker {...fieldProps} locale="en-GB" />
+          {error === VALIDATION_TYPES.REQUIRED && (
+            <ErrorMessage>this field cannot be blank</ErrorMessage>
+          )}
+        </>
+      );
+    }}
   </Field>
 );
 

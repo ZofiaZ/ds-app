@@ -15,3 +15,15 @@ export const getStoredValue = (key: string) => {
 
   return sessionStorage.getItem(key) || "";
 };
+
+export const saveInSessionStorage = (data: { [key: string]: string }) => {
+  const sessionStorage = safelyGetSessionStorage();
+
+  if (!sessionStorage) {
+    return;
+  }
+
+  Object.keys(data).forEach((key) => {
+    sessionStorage.setItem(key, data[key]);
+  });
+};

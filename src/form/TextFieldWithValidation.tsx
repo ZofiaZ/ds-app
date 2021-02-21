@@ -103,6 +103,9 @@ const TextFieldWithValidation = ({
                   : `Please enter a valid ${label}`}
               </ErrorMessage>
             )}
+            {error === VALIDATION_TYPES.REQUIRED && (
+              <ErrorMessage>this field cannot be blank</ErrorMessage>
+            )}
           </>
         );
       }}
