@@ -40,7 +40,7 @@
     "@babel/runtime" "^7.0.0"
     "@emotion/core" "^10.0.9"
 
-"@atlaskit/avatar@^20.0.0", "@atlaskit/avatar@^20.1.0":
+"@atlaskit/avatar@^20.0.0", "@atlaskit/avatar@^20.1.0", "@atlaskit/avatar@^20.1.1":
   version "20.1.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/avatar/-/avatar-20.1.1.tgz#e7c6a27c7d91655a0780e5e1fd9b06b3977350b4"
   integrity sha512-D60rTNz79mdyLdNIm4QJG/2hSq/64UFEVibAfNZHIeZkn6SYpN2wqWorXIhFftvbTAg7//uct8VzRvoUIUir1Q==
