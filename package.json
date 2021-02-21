@@ -7,6 +7,8 @@
     "@atlaskit/css-reset": "^6.0.5",
     "@atlaskit/datetime-picker": "^10.0.8",
     "@atlaskit/form": "^8.2.0",
+    "@atlaskit/media-avatar-picker": "22.1.4",
+    "@atlaskit/modal-dialog": "^11.2.6",
     "@atlaskit/textarea": "^4.0.1",
     "@atlaskit/textfield": "^5.0.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -20,9 +22,10 @@
     "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-intl": "^2.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
-    "styled-components": "^5.2.1",
+    "styled-components": "^3.2",
     "typescript": "^4.1.2"
   },
   "scripts": {

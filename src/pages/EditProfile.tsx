@@ -1,6 +1,7 @@
 import React from "react";
 import Form, { ErrorMessage, Field, FormFooter } from "@atlaskit/form";
 import Button from "@atlaskit/button";
+import AvatarPicker from "../form/AvatarPicker";
 import TextFieldWithValidation from "../form/TextFieldWithValidation";
 import {
   isValidEmail,
@@ -79,6 +80,8 @@ function EditProfile() {
                 </>
               )}
             </Field>
+
+            <AvatarPicker />
 
             <FormFooter>
               <Button
