@@ -5,6 +5,7 @@
   "dependencies": {
     "@atlaskit/button": "^15.1.4",
     "@atlaskit/css-reset": "^6.0.5",
+    "@atlaskit/datetime-picker": "^10.0.8",
     "@atlaskit/form": "^8.2.0",
     "@atlaskit/textfield": "^5.0.0",
     "@testing-library/jest-dom": "^5.11.4",

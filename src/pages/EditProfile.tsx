@@ -1,8 +1,13 @@
 import React from "react";
-import Form from "@atlaskit/form";
+import Form, { ErrorMessage, Field, FormFooter } from "@atlaskit/form";
 import Button from "@atlaskit/button";
 import TextFieldWithValidation from "../form/TextFieldWithValidation";
-import { isValidEmail, containsOnlyNameCharacters } from "../utils/validators";
+import {
+  isValidEmail,
+  containsOnlyNameCharacters,
+  isValidPhoneNumber,
+} from "../utils/validators";
+import { DatePicker } from "@atlaskit/datetime-picker";
 
 const handleSubmit = (data: { firstname: string; lastname: string }) => {
   console.log("form data", data);
@@ -22,6 +27,7 @@ function EditProfile() {
               minCharacters={2}
               maxCharacters={30}
               isFormatValid={containsOnlyNameCharacters}
+              customFormatError="Only latin a-z letters and characters: . - ' are allowed"
             />
             <TextFieldWithValidation
               name="lastname"
@@ -30,6 +36,7 @@ function EditProfile() {
               minCharacters={2}
               maxCharacters={40}
               isFormatValid={containsOnlyNameCharacters}
+              customFormatError="Only latin a-z letters and characters: . - ' are allowed"
             />
             <TextFieldWithValidation
               name="email"
@@ -37,10 +44,36 @@ function EditProfile() {
               autocomplete="email"
               maxCharacters={70}
               isFormatValid={isValidEmail}
+              inputmode="email"
             />
-            <Button type="submit" appearance="primary" isDisabled={submitting}>
-              Submit
-            </Button>
+            <TextFieldWithValidation
+              name="phonenumber"
+              label="phone number"
+              autocomplete="tel"
+              minCharacters={6}
+              maxCharacters={16}
+              isFormatValid={isValidPhoneNumber}
+              type="tel"
+              inputmode="tel"
+              helpText="needs to start with country prefix, for example +44 for UK numbers"
+            />
+            <Field name="DoB" label="date of birth" defaultValue="" isRequired>
+              {({ fieldProps, error }) => (
+                <>
+                  <DatePicker {...fieldProps} locale="en-GB" />
+                  {error && <ErrorMessage>{error}</ErrorMessage>}
+                </>
+              )}
+            </Field>
+            <FormFooter>
+              <Button
+                type="submit"
+                appearance="primary"
+                isDisabled={submitting}
+              >
+                Submit
+              </Button>
+            </FormFooter>
           </form>
         )}
       </Form>

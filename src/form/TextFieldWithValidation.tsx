@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ErrorMessage, Field } from "@atlaskit/form";
+import { ErrorMessage, Field, HelperMessage } from "@atlaskit/form";
 import TextField from "@atlaskit/textfield";
 import * as VALIDATION_TYPES from "../utils/validationTypes";
 
@@ -10,13 +10,24 @@ type PropTypes = {
   type?: string;
   minCharacters?: number;
   maxCharacters?: number;
-  isFormatValid?: (value?: string) => boolean;
+  isFormatValid?: (value: string) => boolean;
+  helpText?: string;
+  customFormatError?: string;
+  inputmode?:
+    | "text"
+    | "none"
+    | "tel"
+    | "url"
+    | "email"
+    | "numeric"
+    | "decimal"
+    | "search";
 };
 
 const validate = (
   minCharacters?: number,
   maxCharacters?: number,
-  isFormatValid?: (value?: string) => boolean
+  isFormatValid?: (value: string) => boolean
 ) => (value?: string) => {
   if (!value || !value.trim()) {
     return;
@@ -45,6 +56,9 @@ const TextFieldWithValidation = ({
   isFormatValid,
   minCharacters,
   maxCharacters,
+  helpText,
+  customFormatError,
+  inputmode = "text",
 }: PropTypes) => {
   const [isBlurred, setIsBlurred] = useState(false);
 
@@ -63,11 +77,13 @@ const TextFieldWithValidation = ({
       {({ fieldProps, error }) => {
         return (
           <>
+            {helpText && <HelperMessage>{helpText}</HelperMessage>}
             <TextField
               {...fieldProps}
               autoComplete={autocomplete}
               onBlur={handleBlur}
               type={type}
+              inputMode={inputmode}
             />
             {isBlurred && error === VALIDATION_TYPES.TOO_SHORT && (
               <ErrorMessage>
@@ -80,7 +96,11 @@ const TextFieldWithValidation = ({
               </ErrorMessage>
             )}
             {isBlurred && error === VALIDATION_TYPES.FORMAT && (
-              <ErrorMessage>Please enter a valid {label}</ErrorMessage>
+              <ErrorMessage>
+                {customFormatError
+                  ? customFormatError
+                  : `Please enter a valid ${label}`}
+              </ErrorMessage>
             )}
           </>
         );
