@@ -5,19 +5,26 @@ import PreviewProfile from "./pages/PreviewProfile";
 import MainHeader from "./layout/MainHeader";
 import MainFooter from "./layout/MainFooter";
 
+const containerStyles = {
+  maxWidth: "400px",
+  margin: "0 auto",
+};
+
 function App() {
   return (
     <Router>
       <MainHeader />
 
-      <Switch>
-        <Route exact path="/">
-          <PreviewProfile />
-        </Route>
-        <Route path="/edit">
-          <EditProfile />
-        </Route>
-      </Switch>
+      <main className="App-content" style={containerStyles}>
+        <Switch>
+          <Route exact path="/">
+            <PreviewProfile />
+          </Route>
+          <Route path="/edit">
+            <EditProfile />
+          </Route>
+        </Switch>
+      </main>
 
       <MainFooter />
     </Router>
