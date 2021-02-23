@@ -8,13 +8,13 @@ import {
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const postProfileData = async (data: { [key: string]: string }) => {
-  await sleep(300);
   saveProfileDataInSessionStorage(data);
-  Promise.resolve("temp-user-id");
+  await sleep(2000);
+  return Promise.resolve("temp-user-id");
 };
 
 export const getProfileData = async () => {
   const data = getProfileDataFromSessionStorage();
-  await sleep(3000);
+  await sleep(2000);
   return Promise.resolve(data);
 };

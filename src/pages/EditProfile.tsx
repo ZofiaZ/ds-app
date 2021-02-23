@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import Form, { FormFooter } from "@atlaskit/form";
-import Button from "@atlaskit/button";
+import LoadingButton from "@atlaskit/button/loading-button";
 import DatePickerField from "../form/DatePickerField";
 import TextAreaField from "../form/TextAreaField";
 import AvatarPickerField from "../form/AvatarPickerField";
@@ -14,85 +14,109 @@ import {
 } from "../utils/validators";
 import { FIELDS } from "../utils/fieldsSettings";
 import { postProfileData } from "../utils/api";
+import { IProfileDataResponse } from "../types";
+
+interface IEditProfile extends RouteComponentProps {
+  data?: IProfileDataResponse;
+  setData: (data: { [key: string]: string }) => void;
+}
 
 const { FIRST_NAME, LAST_NAME, PHONE, EMAIL, DOB, ABOUT, AVATAR } = FIELDS;
 
-const handleSubmit = (history: RouteComponentProps["history"]) => async (data: {
-  [key: string]: string;
-}) => {
-  const requiredErrors = requiredValidator(data);
+const EditProfile = ({ history, data, setData }: IEditProfile) => {
+  const handleSubmit = async (formData: { [key: string]: string }) => {
+    const requiredErrors = requiredValidator(formData);
 
-  if (Object.keys(requiredErrors).length > 0) {
-    return Promise.resolve(requiredErrors);
-  }
+    console.log(requiredErrors);
 
-  await postProfileData(data);
-  history.push("/");
-};
+    if (Object.keys(requiredErrors).length > 0) {
+      return Promise.resolve(requiredErrors);
+    }
 
-const EditProfile: React.FunctionComponent<RouteComponentProps> = ({
-  history,
-}) => {
+    console.log(formData);
+    await postProfileData(formData);
+    setData(formData);
+    history.push("/", { displaySuccessBanner: true });
+  };
+
   return (
     <div className="EditProfile">
       <h1>Edit Profile</h1>
-      <Form onSubmit={handleSubmit(history)}>
-        {({ formProps, submitting }) => (
-          <form {...formProps}>
-            <TextFieldWithValidation
-              name={FIRST_NAME.name}
-              label={FIRST_NAME.label}
-              autocomplete="given-name"
-              minCharacters={2}
-              maxCharacters={30}
-              isFormatValid={containsOnlyNameCharacters}
-              helpText={FIRST_NAME.helpText}
-            />
-            <TextFieldWithValidation
-              name={LAST_NAME.name}
-              label={LAST_NAME.label}
-              autocomplete="family-name"
-              minCharacters={2}
-              maxCharacters={40}
-              isFormatValid={containsOnlyNameCharacters}
-              helpText={LAST_NAME.helpText}
-            />
-            <TextFieldWithValidation
-              name={EMAIL.name}
-              label={EMAIL.label}
-              autocomplete="email"
-              maxCharacters={70}
-              isFormatValid={isValidEmail}
-              inputmode="email"
-            />
-            <TextFieldWithValidation
-              name={PHONE.name}
-              label={PHONE.label}
-              autocomplete="tel"
-              minCharacters={6}
-              maxCharacters={16}
-              isFormatValid={isValidPhoneNumber}
-              type="tel"
-              inputmode="tel"
-              helpText={PHONE.helpText}
-            />
-            <DatePickerField name={DOB.name} label={DOB.label} />
+      <Form onSubmit={handleSubmit}>
+        {({ formProps, submitting }) => {
+          return (
+            <form {...formProps}>
+              <TextFieldWithValidation
+                name={FIRST_NAME.name}
+                label={FIRST_NAME.label}
+                autocomplete="given-name"
+                minCharacters={2}
+                maxCharacters={30}
+                isFormatValid={containsOnlyNameCharacters}
+                helpText={FIRST_NAME.helpText}
+                defaultValue={data?.firstname}
+              />
+              <TextFieldWithValidation
+                name={LAST_NAME.name}
+                label={LAST_NAME.label}
+                autocomplete="family-name"
+                minCharacters={2}
+                maxCharacters={40}
+                isFormatValid={containsOnlyNameCharacters}
+                helpText={LAST_NAME.helpText}
+                defaultValue={data?.lastname}
+              />
+              <TextFieldWithValidation
+                name={EMAIL.name}
+                label={EMAIL.label}
+                autocomplete="email"
+                maxCharacters={70}
+                isFormatValid={isValidEmail}
+                inputmode="email"
+                defaultValue={data?.email}
+              />
+              <TextFieldWithValidation
+                name={PHONE.name}
+                label={PHONE.label}
+                autocomplete="tel"
+                minCharacters={6}
+                maxCharacters={16}
+                isFormatValid={isValidPhoneNumber}
+                type="tel"
+                inputmode="tel"
+                helpText={PHONE.helpText}
+                defaultValue={data?.phoneNumber}
+              />
+              <DatePickerField
+                name={DOB.name}
+                label={DOB.label}
+                defaultValue={data?.dob}
+              />
 
-            <TextAreaField name={ABOUT.name} label={ABOUT.label} />
+              <TextAreaField
+                name={ABOUT.name}
+                label={ABOUT.label}
+                defaultValue={data?.about}
+              />
 
-            <AvatarPickerField name={AVATAR.name} label={AVATAR.label} />
+              <AvatarPickerField
+                name={AVATAR.name}
+                label={AVATAR.label}
+                defaultValue={data?.avatar}
+              />
 
-            <FormFooter>
-              <Button
-                type="submit"
-                appearance="primary"
-                isDisabled={submitting}
-              >
-                Submit
-              </Button>
-            </FormFooter>
-          </form>
-        )}
+              <FormFooter>
+                <LoadingButton
+                  type="submit"
+                  appearance="primary"
+                  isLoading={submitting}
+                >
+                  Save Profile
+                </LoadingButton>
+              </FormFooter>
+            </form>
+          );
+        }}
       </Form>
     </div>
   );

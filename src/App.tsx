@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import EditProfile from "./pages/EditProfile";
 import PreviewProfile from "./pages/PreviewProfile";
 import MainHeader from "./layout/MainHeader";
 import MainFooter from "./layout/MainFooter";
+// import { saveProfileDataInSessionStorage } from "./utils/sessionStorage";
+import { getProfileData } from "./utils/api";
+import { IProfileDataResponse } from "./types";
 
 const containerStyles = {
   maxWidth: "400px",
@@ -12,6 +15,17 @@ const containerStyles = {
 };
 
 function App() {
+  const [data, setData] = useState<IProfileDataResponse>();
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getProfileData();
+      setData(data);
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <Router>
       <MainHeader />
@@ -19,10 +33,10 @@ function App() {
       <main className="App-content" style={containerStyles}>
         <Switch>
           <Route exact path="/">
-            <PreviewProfile />
+            <PreviewProfile data={data} />
           </Route>
           <Route path="/edit">
-            <EditProfile />
+            <EditProfile data={data} setData={setData} />
           </Route>
         </Switch>
       </main>

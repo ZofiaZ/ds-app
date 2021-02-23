@@ -1,18 +1,18 @@
 import React from "react";
 import { Field, ErrorMessage } from "@atlaskit/form";
 import TextArea from "@atlaskit/textarea";
-import { getStoredValue } from "../utils/sessionStorage";
 
 type PropTypes = {
   name: string;
   label: string;
+  defaultValue?: string;
 };
 
-const TextAreaField = ({ name, label }: PropTypes) => (
+const TextAreaField = ({ name, label, defaultValue = "" }: PropTypes) => (
   <Field<string, HTMLTextAreaElement>
     name={name}
     label={label}
-    defaultValue={getStoredValue(name)}
+    defaultValue={defaultValue}
     isRequired
   >
     {({ fieldProps, error }) => (

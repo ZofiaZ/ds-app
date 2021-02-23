@@ -1,21 +1,16 @@
 import React from "react";
 import { Field, ErrorMessage } from "@atlaskit/form";
 import { DatePicker } from "@atlaskit/datetime-picker";
-import { getStoredValue } from "../utils/sessionStorage";
 import * as VALIDATION_TYPES from "../utils/validationTypes";
 
 type PropTypes = {
   name: string;
   label: string;
+  defaultValue?: string;
 };
 
-const DatePickerField = ({ name, label }: PropTypes) => (
-  <Field
-    name={name}
-    label={label}
-    defaultValue={getStoredValue(name)}
-    isRequired
-  >
+const DatePickerField = ({ name, label, defaultValue = "" }: PropTypes) => (
+  <Field name={name} label={label} defaultValue={defaultValue} isRequired>
     {({ fieldProps, error }) => {
       console.log("error", error, fieldProps);
       return (

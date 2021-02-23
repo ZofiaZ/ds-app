@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { ErrorMessage, Field, HelperMessage } from "@atlaskit/form";
 import TextField from "@atlaskit/textfield";
 import * as VALIDATION_TYPES from "../utils/validationTypes";
-import { getStoredValue } from "../utils/sessionStorage";
 
 type PropTypes = {
   name: string;
   label: string;
+  defaultValue?: string;
   autocomplete?: string;
   type?: string;
   minCharacters?: number;
@@ -52,6 +52,7 @@ const validate = (
 const TextFieldWithValidation = ({
   name,
   label,
+  defaultValue = "",
   autocomplete = "off",
   type = "text",
   isFormatValid,
@@ -70,7 +71,7 @@ const TextFieldWithValidation = ({
   return (
     <Field
       name={name}
-      defaultValue={getStoredValue(name)}
+      defaultValue={defaultValue}
       label={label}
       isRequired
       validate={validate(minCharacters, maxCharacters, isFormatValid)}

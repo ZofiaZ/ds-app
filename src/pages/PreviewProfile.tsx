@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import Avatar from "@atlaskit/avatar";
 import Spinner from "@atlaskit/spinner";
-import { getProfileData } from "../utils/api";
+import SectionMessage from "@atlaskit/section-message";
+import { IProfileDataResponse } from "../types";
 import { FIELDS } from "../utils/fieldsSettings";
 
-function PreviewProfile() {
-  const [data, setData] = useState<ProfileDataResponse>();
+type LocationState = {
+  displaySuccessBanner?: boolean;
+};
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getProfileData();
-      setData(data);
-    }
+interface IPreviewProfile extends RouteComponentProps<{}, any, LocationState> {
+  data?: IProfileDataResponse;
+}
 
-    fetchData();
-  }, []);
-
+const PreviewProfile = ({ location, data }: IPreviewProfile) => {
   return (
     <div className="PreviewProfile">
+      {location?.state?.displaySuccessBanner && (
+        <SectionMessage appearance="confirmation">
+          <p>All profile details are saved</p>
+        </SectionMessage>
+      )}
       <h1>Preview Profile</h1>
       {!data && <Spinner size="large" />}
       {data && data.email && (
@@ -52,19 +55,14 @@ function PreviewProfile() {
           </dl>
         </>
       )}
-      {data && !data.email && <Link to="/edit">Create Profile</Link>}
+      {data && !data.email && (
+        <>
+          <Avatar src="" size="xxlarge" />
+          <Link to="/edit">Create Profile</Link>
+        </>
+      )}
     </div>
   );
-}
-
-type ProfileDataResponse = {
-  avatar?: string;
-  firstname?: string;
-  lastname?: string;
-  email?: string;
-  dob?: string;
-  phoneNumber?: string;
-  about?: string;
 };
 
-export default PreviewProfile;
+export default withRouter(PreviewProfile);

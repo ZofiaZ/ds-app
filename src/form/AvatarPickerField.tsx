@@ -4,16 +4,16 @@ import Avatar from "@atlaskit/avatar";
 import { ModalTransition } from "@atlaskit/modal-dialog";
 import Button from "@atlaskit/button";
 import { Field } from "@atlaskit/form";
-import { getStoredValue } from "../utils/sessionStorage";
 
 type PropTypes = {
   name: string;
   label: string;
+  defaultValue?: string;
 };
 
-const AvatarPickerField = ({ name, label }: PropTypes) => {
+const AvatarPickerField = ({ name, label, defaultValue = "" }: PropTypes) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [imageDataURI, setImageDataURI] = useState(getStoredValue(name));
+  const [imageDataURI, setImageDataURI] = useState(defaultValue);
 
   return (
     <Field name={name} defaultValue="" label={label}>
