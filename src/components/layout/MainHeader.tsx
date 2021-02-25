@@ -10,7 +10,6 @@ const Header = styled.header`
   justify-content: space-between;
   border-bottom: 2px solid ${colors.border};
   height: ${layout.headerHeight};
-  box-sizing: border-box;
 `;
 
 const NavList = styled.ul`

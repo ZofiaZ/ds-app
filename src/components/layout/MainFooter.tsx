@@ -7,7 +7,6 @@ const Footer = styled.footer`
   display: flex;
   border-top: 2px solid ${colors.border};
   height: ${layout.footerHeight};
-  box-sizing: border-box;
 `;
 
 function MainFooter() {
