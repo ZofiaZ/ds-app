@@ -25,14 +25,14 @@ const AvatarContainer = styled.div`
 
 const AvatarPickerField = ({ name, label, defaultValue = "" }: PropTypes) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [imageDataURI, setImageDataURI] = useState(defaultValue);
+  const [imageDataURI, setImageDataURI] = useState("");
 
   return (
-    <Field name={name} defaultValue="" label={label}>
+    <Field name={name} defaultValue={defaultValue} label={label}>
       {({ fieldProps }) => (
         <>
           <AvatarContainer>
-            <Avatar src={imageDataURI} size="xlarge" />
+            <Avatar src={imageDataURI || defaultValue} size="xlarge" />
             <Button
               onClick={() => {
                 setIsOpen(true);
@@ -49,6 +49,7 @@ const AvatarPickerField = ({ name, label, defaultValue = "" }: PropTypes) => {
                   setImageDataURI(selectedAvatar.dataURI);
                 }}
                 onImagePickedDataURI={(exportedImg) => {
+                  console.log("exportedImg", exportedImg);
                   setImageDataURI(exportedImg);
                   fieldProps.onChange(exportedImg);
                   setIsOpen(false);

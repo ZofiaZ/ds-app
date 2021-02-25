@@ -16,7 +16,7 @@ interface IPreviewProfile extends RouteComponentProps<{}, any, LocationState> {
   data?: IProfileData;
 }
 
-const ProfileContainer = styled.dl`
+const ProfileContainer = styled.section`
   border: 2px solid ${colors.border};
   padding: ${spacings.offset};
   min-height: 200px;
@@ -25,6 +25,16 @@ const ProfileContainer = styled.dl`
   align-items: center;
   justify-content: center;
   margin-top: 0;
+
+  dl {
+    padding: 0;
+  }
+
+  footer {
+    width: 100%;
+    text-align: right;
+    margin-top: ${spacings.offset};
+  }
 `;
 
 const AvatarContainer = styled.div`
@@ -66,34 +76,42 @@ const PreviewProfile = ({ location, data }: IPreviewProfile) => {
         {data &&
           (data.userId ? (
             <>
-              <DataRow>
-                <dt>{FIELDS.FIRST_NAME.label}:</dt>
-                <dd>{data.firstname}</dd>
-              </DataRow>
-              <DataRow>
-                <dt>{FIELDS.LAST_NAME.label}:</dt>
-                <dd>{data.lastname}</dd>
-              </DataRow>
-              <DataRow>
-                <dt>{FIELDS.EMAIL.label}:</dt>
-                <dd>{data.email}</dd>
-              </DataRow>
-              <DataRow>
-                <dt>{FIELDS.PHONE.label}:</dt>
-                <dd>{data.phoneNumber}</dd>
-              </DataRow>
-              <DataRow>
-                <dt>{FIELDS.DOB.label}:</dt>
-                <dd>{data.dob}</dd>
-              </DataRow>
-              <DataRow>
-                <dt className="label">{FIELDS.ABOUT.label}:</dt>
-                <dd className="value">{data.about}</dd>
-              </DataRow>
+              <dl>
+                <DataRow>
+                  <dt>{FIELDS.FIRST_NAME.label}:</dt>
+                  <dd>{data.firstname}</dd>
+                </DataRow>
+                <DataRow>
+                  <dt>{FIELDS.LAST_NAME.label}:</dt>
+                  <dd>{data.lastname}</dd>
+                </DataRow>
+                <DataRow>
+                  <dt>{FIELDS.EMAIL.label}:</dt>
+                  <dd>{data.email}</dd>
+                </DataRow>
+                <DataRow>
+                  <dt>{FIELDS.PHONE.label}:</dt>
+                  <dd>{data.phoneNumber}</dd>
+                </DataRow>
+                <DataRow>
+                  <dt>{FIELDS.DOB.label}:</dt>
+                  <dd>{data.dob}</dd>
+                </DataRow>
+                <DataRow>
+                  <dt className="label">{FIELDS.ABOUT.label}:</dt>
+                  <dd className="value">{data.about}</dd>
+                </DataRow>
+              </dl>
+              <footer>
+                <Link to="/edit">Edit profile details</Link>
+              </footer>
             </>
           ) : (
             <>
-              <Link to="/edit">Create Profile</Link>
+              <p>
+                Your profile is empty
+                <Link to="/edit">Add profile details</Link>
+              </p>
             </>
           ))}
       </ProfileContainer>
