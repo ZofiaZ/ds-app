@@ -29,6 +29,7 @@ const ProfileContainer = styled.section`
 
   dl {
     padding: 0;
+    max-width: 100%;
   }
 
   footer {
@@ -45,7 +46,7 @@ const AvatarContainer = styled.div`
 `;
 
 const DataRow = styled.div`
-  padding: 10px;
+  padding: 10px 0;
   text-align: left;
   width: 100%;
   display: flex;
@@ -57,6 +58,7 @@ const DataRow = styled.div`
 
   dd {
     margin: 0;
+    word-break: break-all;
   }
 `;
 
