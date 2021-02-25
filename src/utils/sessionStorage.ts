@@ -1,3 +1,4 @@
+import { IProfileData } from "../types";
 import { FIELDS } from "../utils/fieldsSettings";
 
 const safelyGetSessionStorage = () => {
@@ -18,16 +19,14 @@ export const getStoredValue = (key: string) => {
   return sessionStorage.getItem(key) || "";
 };
 
-export const saveProfileDataInSessionStorage = (data: {
-  [key: string]: string;
-}) => {
+export const saveProfileDataInSessionStorage = (data: IProfileData) => {
   const sessionStorage = safelyGetSessionStorage();
   const tempUserId = "temp-user-id";
 
   sessionStorage?.setItem("userId", tempUserId);
 
   Object.keys(data).forEach((key) => {
-    sessionStorage?.setItem(key, data[key]);
+    sessionStorage?.setItem(key, data[key] || "");
   });
 
   return tempUserId;

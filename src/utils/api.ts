@@ -1,3 +1,4 @@
+import { IProfileData } from "../types";
 import {
   getProfileDataFromSessionStorage,
   saveProfileDataInSessionStorage,
@@ -7,7 +8,7 @@ import {
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const postProfileData = async (data: { [key: string]: string }) => {
+export const postProfileData = async (data: IProfileData) => {
   const userId = saveProfileDataInSessionStorage(data);
   await sleep(2000);
   return Promise.resolve(userId);

@@ -1,14 +1,14 @@
 import React, { useEffect, useState, FunctionComponent } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import EditProfile from "./pages/EditProfile";
-import PreviewProfile from "./pages/PreviewProfile";
-import MainHeader from "./layout/MainHeader";
-import MainFooter from "./layout/MainFooter";
-import { getProfileData } from "../utils/api";
-import { IProfileData } from "../types";
+import EditProfile from "./components/pages/EditProfile";
+import PreviewProfile from "./components/pages/PreviewProfile";
+import MainHeader from "./components/layout/MainHeader";
+import MainFooter from "./components/layout/MainFooter";
+import { getProfileData } from "./utils/api";
+import { IProfileData } from "./types";
 import styled from "styled-components";
-import { layout, spacings } from "../utils/styles";
-import { getStoredValue } from "../utils/sessionStorage";
+import { layout, spacings } from "./utils/styles";
+import { getStoredValue } from "./utils/sessionStorage";
 
 const Main = styled.main`
   max-width: 600px;

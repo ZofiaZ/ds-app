@@ -7,4 +7,5 @@ export interface IProfileData {
   dob?: string;
   phoneNumber?: string;
   about?: string;
+  [key: string]: string | undefined;
 }
