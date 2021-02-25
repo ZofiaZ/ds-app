@@ -5,7 +5,7 @@ import { ModalTransition } from "@atlaskit/modal-dialog";
 import Button from "@atlaskit/button";
 import { Field } from "@atlaskit/form";
 import styled from "styled-components";
-import { colors, spacings } from "../../utils/styles";
+import { spacings } from "../../utils/styles";
 
 type PropTypes = {
   name: string;
@@ -49,7 +49,6 @@ const AvatarPickerField = ({ name, label, defaultValue = "" }: PropTypes) => {
                   setImageDataURI(selectedAvatar.dataURI);
                 }}
                 onImagePickedDataURI={(exportedImg) => {
-                  console.log("exportedImg", exportedImg);
                   setImageDataURI(exportedImg);
                   fieldProps.onChange(exportedImg);
                   setIsOpen(false);
