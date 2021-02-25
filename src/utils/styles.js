@@ -1,6 +1,7 @@
 export const colors = {
   border: "#dfe1e6",
   accent: "#31c5f4",
+  dark: "#172B4D",
   lightGrey: "#dfe1e6",
 };
 
