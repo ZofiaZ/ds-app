@@ -1,4 +1,5 @@
-export interface IProfileDataResponse {
+export interface IProfileData {
+  userId?: string;
   avatar?: string;
   firstname?: string;
   lastname?: string;

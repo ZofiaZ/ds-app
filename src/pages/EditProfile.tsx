@@ -14,10 +14,10 @@ import {
 } from "../utils/validators";
 import { FIELDS } from "../utils/fieldsSettings";
 import { postProfileData } from "../utils/api";
-import { IProfileDataResponse } from "../types";
+import { IProfileData } from "../types";
 
 interface IEditProfile extends RouteComponentProps {
-  data?: IProfileDataResponse;
+  data?: IProfileData;
   setData: (data: { [key: string]: string }) => void;
 }
 
@@ -34,8 +34,8 @@ const EditProfile = ({ history, data, setData }: IEditProfile) => {
     }
 
     console.log(formData);
-    await postProfileData(formData);
-    setData(formData);
+    const userId = await postProfileData(formData);
+    setData({ ...formData, userId: userId });
     history.push("/", { displaySuccessBanner: true });
   };
 

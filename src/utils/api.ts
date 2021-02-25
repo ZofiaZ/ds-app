@@ -8,9 +8,9 @@ import {
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const postProfileData = async (data: { [key: string]: string }) => {
-  saveProfileDataInSessionStorage(data);
+  const userId = saveProfileDataInSessionStorage(data);
   await sleep(2000);
-  return Promise.resolve("temp-user-id");
+  return Promise.resolve(userId);
 };
 
 export const getProfileData = async () => {

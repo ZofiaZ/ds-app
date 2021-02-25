@@ -6,7 +6,7 @@ import MainHeader from "./layout/MainHeader";
 import MainFooter from "./layout/MainFooter";
 // import { saveProfileDataInSessionStorage } from "./utils/sessionStorage";
 import { getProfileData } from "./utils/api";
-import { IProfileDataResponse } from "./types";
+import { IProfileData } from "./types";
 
 const containerStyles = {
   maxWidth: "400px",
@@ -15,7 +15,7 @@ const containerStyles = {
 };
 
 function App() {
-  const [data, setData] = useState<IProfileDataResponse>();
+  const [data, setData] = useState<IProfileData>();
 
   useEffect(() => {
     async function fetchData() {

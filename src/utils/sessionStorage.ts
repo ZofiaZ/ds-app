@@ -22,14 +22,15 @@ export const saveProfileDataInSessionStorage = (data: {
   [key: string]: string;
 }) => {
   const sessionStorage = safelyGetSessionStorage();
+  const tempUserId = "temp-user-id";
 
-  if (!sessionStorage) {
-    return;
-  }
+  sessionStorage?.setItem("userId", tempUserId);
 
   Object.keys(data).forEach((key) => {
-    sessionStorage.setItem(key, data[key]);
+    sessionStorage?.setItem(key, data[key]);
   });
+
+  return tempUserId;
 };
 
 export const getProfileDataFromSessionStorage = () => {

@@ -3,7 +3,7 @@ import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import Avatar from "@atlaskit/avatar";
 import Spinner from "@atlaskit/spinner";
 import SectionMessage from "@atlaskit/section-message";
-import { IProfileDataResponse } from "../types";
+import { IProfileData } from "../types";
 import { FIELDS } from "../utils/fieldsSettings";
 
 type LocationState = {
@@ -11,10 +11,11 @@ type LocationState = {
 };
 
 interface IPreviewProfile extends RouteComponentProps<{}, any, LocationState> {
-  data?: IProfileDataResponse;
+  data?: IProfileData;
 }
 
 const PreviewProfile = ({ location, data }: IPreviewProfile) => {
+  console.log(Object.keys(data || {}).length);
   return (
     <div className="PreviewProfile">
       {location?.state?.displaySuccessBanner && (
@@ -22,42 +23,38 @@ const PreviewProfile = ({ location, data }: IPreviewProfile) => {
           <p>All profile details are saved</p>
         </SectionMessage>
       )}
-      <h1>Preview Profile</h1>
+      <h1>Your Profile</h1>
       {!data && <Spinner size="large" />}
-      {data && data.email && (
+      {data && <Avatar src={data.avatar || ""} size="xxlarge" />}
+      {data && data.userId ? (
+        <dl>
+          <div className="dataRow">
+            <dt className="label">{FIELDS.FIRST_NAME.label}:</dt>
+            <dd className="value">{data.firstname}</dd>
+          </div>
+          <div className="dataRow">
+            <dt className="label">{FIELDS.LAST_NAME.label}:</dt>
+            <dd className="value">{data.lastname}</dd>
+          </div>
+          <div className="dataRow">
+            <dt className="label">{FIELDS.EMAIL.label}:</dt>
+            <dd className="value">{data.email}</dd>
+          </div>
+          <div className="dataRow">
+            <dt className="label">{FIELDS.PHONE.label}:</dt>
+            <dd className="value">{data.phoneNumber}</dd>
+          </div>
+          <div className="dataRow">
+            <dt className="label">{FIELDS.DOB.label}:</dt>
+            <dd className="value">{data.dob}</dd>
+          </div>
+          <div className="dataRow">
+            <dt className="label">{FIELDS.ABOUT.label}:</dt>
+            <dd className="value">{data.about}</dd>
+          </div>
+        </dl>
+      ) : (
         <>
-          <Avatar src={data.avatar || ""} size="xxlarge" />
-          <dl>
-            <div className="dataRow">
-              <dt className="label">{FIELDS.FIRST_NAME.label}:</dt>
-              <dd className="value">{data.firstname}</dd>
-            </div>
-            <div className="dataRow">
-              <dt className="label">{FIELDS.LAST_NAME.label}:</dt>
-              <dd className="value">{data.lastname}</dd>
-            </div>
-            <div className="dataRow">
-              <dt className="label">{FIELDS.EMAIL.label}:</dt>
-              <dd className="value">{data.email}</dd>
-            </div>
-            <div className="dataRow">
-              <dt className="label">{FIELDS.PHONE.label}:</dt>
-              <dd className="value">{data.phoneNumber}</dd>
-            </div>
-            <div className="dataRow">
-              <dt className="label">{FIELDS.DOB.label}:</dt>
-              <dd className="value">{data.dob}</dd>
-            </div>
-            <div className="dataRow">
-              <dt className="label">{FIELDS.ABOUT.label}:</dt>
-              <dd className="value">{data.about}</dd>
-            </div>
-          </dl>
-        </>
-      )}
-      {data && !data.email && (
-        <>
-          <Avatar src="" size="xxlarge" />
           <Link to="/edit">Create Profile</Link>
         </>
       )}
