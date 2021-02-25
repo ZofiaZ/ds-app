@@ -2,27 +2,49 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/logo.svg";
+import { colors, spacings, layout, fontSizes } from "../../utils/styles";
 
 const Header = styled.header`
-  padding: 20px;
+  padding: ${spacings.offset};
   display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid ${colors.border};
+  height: ${layout.headerHeight};
+  box-sizing: border-box;
+`;
+
+const NavList = styled.ul`
+  list-style: none;
+  padding: 0;
+  display: flex;
+  height: 100%;
+  align-items: center;
+`;
+
+const NavItem = styled.li`
+  padding: 10px;
+  margin: 0;
+  font-size: ${fontSizes.large};
+  .active {
+    color: ${colors.accent};
+  }
 `;
 
 function MainHeader() {
   return (
     <Header>
-      <img src={logo} className="App-logo" alt="Dynamic Solutions logo" />
+      <img src={logo} alt="Dynamic Solutions logo" />
       <nav>
-        <ul>
-          <li>
+        <NavList>
+          <NavItem>
             <NavLink exact={true} to="/">
               Profile
             </NavLink>
-          </li>
-          <li>
+          </NavItem>
+          <NavItem>
             <NavLink to="/edit">Edit</NavLink>
-          </li>
-        </ul>
+          </NavItem>
+        </NavList>
       </nav>
     </Header>
   );
