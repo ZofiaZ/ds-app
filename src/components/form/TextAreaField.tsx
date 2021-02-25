@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Field, ErrorMessage } from "@atlaskit/form";
 import TextArea from "@atlaskit/textarea";
 
@@ -8,7 +8,11 @@ type PropTypes = {
   defaultValue?: string;
 };
 
-const TextAreaField = ({ name, label, defaultValue = "" }: PropTypes) => (
+const TextAreaField: FunctionComponent<PropTypes> = ({
+  name,
+  label,
+  defaultValue = "",
+}) => (
   <Field<string, HTMLTextAreaElement>
     name={name}
     label={label}

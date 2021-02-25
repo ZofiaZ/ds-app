@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent } from "react";
 import { AvatarPickerDialog } from "@atlaskit/media-avatar-picker";
 import Avatar from "@atlaskit/avatar";
 import { ModalTransition } from "@atlaskit/modal-dialog";
@@ -23,7 +23,11 @@ const AvatarContainer = styled.div`
   }
 `;
 
-const AvatarPickerField = ({ name, label, defaultValue = "" }: PropTypes) => {
+const AvatarPickerField: FunctionComponent<PropTypes> = ({
+  name,
+  label,
+  defaultValue = "",
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [imageDataURI, setImageDataURI] = useState("");
 

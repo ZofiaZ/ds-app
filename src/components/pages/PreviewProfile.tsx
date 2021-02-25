@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import Avatar from "@atlaskit/avatar";
 import Spinner from "@atlaskit/spinner";
@@ -60,7 +60,10 @@ const DataRow = styled.div`
   }
 `;
 
-const PreviewProfile = ({ location, data }: IPreviewProfile) => {
+const PreviewProfile: FunctionComponent<IPreviewProfile> = ({
+  location,
+  data,
+}) => {
   return (
     <>
       {location?.state?.displaySuccessBanner && (

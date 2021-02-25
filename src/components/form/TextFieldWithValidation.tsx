@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent } from "react";
 import { ErrorMessage, Field, HelperMessage } from "@atlaskit/form";
 import TextField from "@atlaskit/textfield";
 import * as VALIDATION_TYPES from "../../utils/validationTypes";
@@ -49,7 +49,7 @@ const validate = (
   return;
 };
 
-const TextFieldWithValidation = ({
+const TextFieldWithValidation: FunctionComponent<PropTypes> = ({
   name,
   label,
   defaultValue = "",
@@ -61,7 +61,7 @@ const TextFieldWithValidation = ({
   helpText,
   customFormatError,
   inputmode = "text",
-}: PropTypes) => {
+}) => {
   const [isBlurred, setIsBlurred] = useState(false);
 
   const handleBlur = () => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Field, ErrorMessage } from "@atlaskit/form";
 import { DatePicker } from "@atlaskit/datetime-picker";
 import * as VALIDATION_TYPES from "../../utils/validationTypes";
@@ -9,7 +9,11 @@ type PropTypes = {
   defaultValue?: string;
 };
 
-const DatePickerField = ({ name, label, defaultValue = "" }: PropTypes) => (
+const DatePickerField: FunctionComponent<PropTypes> = ({
+  name,
+  label,
+  defaultValue = "",
+}) => (
   <Field name={name} label={label} defaultValue={defaultValue} isRequired>
     {({ fieldProps, error }) => {
       console.log("error", error, fieldProps);

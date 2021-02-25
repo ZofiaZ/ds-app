@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import { colors, spacings, layout } from "../../utils/styles";
 
@@ -9,12 +9,10 @@ const Footer = styled.footer`
   height: ${layout.footerHeight};
 `;
 
-function MainFooter() {
-  return (
-    <Footer>
-      <p>all rights reserved</p>
-    </Footer>
-  );
-}
+const MainFooter: FunctionComponent = () => (
+  <Footer>
+    <p>all rights reserved</p>
+  </Footer>
+);
 
 export default MainFooter;

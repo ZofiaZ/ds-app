@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FunctionComponent } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import EditProfile from "./pages/EditProfile";
 import PreviewProfile from "./pages/PreviewProfile";
@@ -18,7 +18,7 @@ const Main = styled.main`
   box-sizing: border-box;
 `;
 
-function App() {
+const App: FunctionComponent = () => {
   const [data, setData] = useState<IProfileData>();
 
   useEffect(() => {
@@ -49,6 +49,6 @@ function App() {
       <MainFooter />
     </Router>
   );
-}
+};
 
 export default App;

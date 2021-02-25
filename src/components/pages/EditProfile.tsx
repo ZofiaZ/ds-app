@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import Form, { FormFooter } from "@atlaskit/form";
 import LoadingButton from "@atlaskit/button/loading-button";
@@ -36,7 +36,11 @@ const FormContainer = styled.div`
   align-items: center;
 `;
 
-const EditProfile = ({ history, data, setData }: IEditProfile) => {
+const EditProfile: FunctionComponent<IEditProfile> = ({
+  history,
+  data,
+  setData,
+}) => {
   const handleSubmit = async (formData: { [key: string]: string }) => {
     const requiredErrors = requiredValidator(formData);
     if (Object.keys(requiredErrors).length > 0) {
