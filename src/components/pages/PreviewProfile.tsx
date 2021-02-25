@@ -109,7 +109,7 @@ const PreviewProfile = ({ location, data }: IPreviewProfile) => {
           ) : (
             <>
               <p>
-                Your profile is empty
+                <span>Your profile is empty - </span>
                 <Link to="/edit">Add profile details</Link>
               </p>
             </>
