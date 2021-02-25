@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, ErrorMessage } from "@atlaskit/form";
 import { DatePicker } from "@atlaskit/datetime-picker";
-import * as VALIDATION_TYPES from "../utils/validationTypes";
+import * as VALIDATION_TYPES from "../../utils/validationTypes";
 
 type PropTypes = {
   name: string;

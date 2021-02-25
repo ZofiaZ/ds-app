@@ -8,6 +8,7 @@
     "@atlaskit/css-reset": "^6.0.5",
     "@atlaskit/datetime-picker": "^10.0.8",
     "@atlaskit/form": "^8.2.0",
+    "@atlaskit/logo": "^13.1.0",
     "@atlaskit/media-avatar-picker": "22.1.4",
     "@atlaskit/modal-dialog": "^11.2.6",
     "@atlaskit/section-message": "^5.0.9",

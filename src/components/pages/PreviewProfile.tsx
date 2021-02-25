@@ -3,8 +3,8 @@ import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import Avatar from "@atlaskit/avatar";
 import Spinner from "@atlaskit/spinner";
 import SectionMessage from "@atlaskit/section-message";
-import { IProfileData } from "../types";
-import { FIELDS } from "../utils/fieldsSettings";
+import { IProfileData } from "../../types";
+import { FIELDS } from "../../utils/fieldsSettings";
 
 type LocationState = {
   displaySuccessBanner?: boolean;
@@ -15,7 +15,6 @@ interface IPreviewProfile extends RouteComponentProps<{}, any, LocationState> {
 }
 
 const PreviewProfile = ({ location, data }: IPreviewProfile) => {
-  console.log(Object.keys(data || {}).length);
   return (
     <div className="PreviewProfile">
       {location?.state?.displaySuccessBanner && (

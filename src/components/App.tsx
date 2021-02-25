@@ -4,9 +4,8 @@ import EditProfile from "./pages/EditProfile";
 import PreviewProfile from "./pages/PreviewProfile";
 import MainHeader from "./layout/MainHeader";
 import MainFooter from "./layout/MainFooter";
-// import { saveProfileDataInSessionStorage } from "./utils/sessionStorage";
-import { getProfileData } from "./utils/api";
-import { IProfileData } from "./types";
+import { getProfileData } from "../utils/api";
+import { IProfileData } from "../types";
 
 const containerStyles = {
   maxWidth: "400px",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, HelperMessage } from "@atlaskit/form";
 import TextField from "@atlaskit/textfield";
-import * as VALIDATION_TYPES from "../utils/validationTypes";
+import * as VALIDATION_TYPES from "../../utils/validationTypes";
 
 type PropTypes = {
   name: string;

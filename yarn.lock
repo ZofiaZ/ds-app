@@ -212,6 +212,14 @@
     "@atlaskit/select" "^13.0.0"
     "@babel/runtime" "^7.0.0"
 
+"@atlaskit/logo@^13.1.0":
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/@atlaskit/logo/-/logo-13.1.0.tgz#df7d4bd626345f0c6e6d0c15be290959cb4fe8df"
+  integrity sha512-C2kjssCXAFPzOxI7g8P0hjWOsEFa6DoERPx1jf20CRudsqkxdq5iLRmRdBLqr93fmlZwmxIOAt+/os0ST8Rbpw==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    react-uid "^2.2.0"
+
 "@atlaskit/lozenge@^10.1.0":
   version "10.1.2"
   resolved "https://registry.yarnpkg.com/@atlaskit/lozenge/-/lozenge-10.1.2.tgz#2e56bd9c3fc3cd8d8bb94f478397943aa67709d1"

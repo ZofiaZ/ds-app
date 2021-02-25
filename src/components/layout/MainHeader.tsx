@@ -1,11 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../logo.svg";
+import styled from "styled-components";
+import logo from "../../assets/logo.svg";
+
+const Header = styled.header`
+  padding: 20px;
+  display: flex;
+`;
 
 function MainHeader() {
   return (
-    <header className="MainHeader">
-      <img src={logo} className="App-logo" alt="logo" />
+    <Header>
+      <img src={logo} className="App-logo" alt="Dynamic Solutions logo" />
       <nav>
         <ul>
           <li>
@@ -18,7 +24,7 @@ function MainHeader() {
           </li>
         </ul>
       </nav>
-    </header>
+    </Header>
   );
 }
 

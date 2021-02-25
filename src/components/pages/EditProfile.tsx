@@ -11,10 +11,10 @@ import {
   containsOnlyNameCharacters,
   isValidPhoneNumber,
   requiredValidator,
-} from "../utils/validators";
-import { FIELDS } from "../utils/fieldsSettings";
-import { postProfileData } from "../utils/api";
-import { IProfileData } from "../types";
+} from "../../utils/validators";
+import { FIELDS } from "../../utils/fieldsSettings";
+import { postProfileData } from "../../utils/api";
+import { IProfileData } from "../../types";
 
 interface IEditProfile extends RouteComponentProps {
   data?: IProfileData;
