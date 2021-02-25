@@ -3,6 +3,7 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import Form, { FormFooter } from "@atlaskit/form";
 import LoadingButton from "@atlaskit/button/loading-button";
 import Spinner from "@atlaskit/spinner";
+import PageTitle from "../layout/PageTitle";
 import DatePickerField from "../form/DatePickerField";
 import TextAreaField from "../form/TextAreaField";
 import AvatarPickerField from "../form/AvatarPickerField";
@@ -49,7 +50,7 @@ const EditProfile = ({ history, data, setData }: IEditProfile) => {
 
   return (
     <>
-      <h1>Edit Profile</h1>
+      <PageTitle>Edit Profile</PageTitle>
       <FormContainer>
         {!data ? (
           <Spinner size="large" />

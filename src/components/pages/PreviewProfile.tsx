@@ -3,6 +3,7 @@ import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import Avatar from "@atlaskit/avatar";
 import Spinner from "@atlaskit/spinner";
 import SectionMessage from "@atlaskit/section-message";
+import PageTitle from "../layout/PageTitle";
 import { IProfileData } from "../../types";
 import { FIELDS } from "../../utils/fieldsSettings";
 import styled from "styled-components";
@@ -67,7 +68,7 @@ const PreviewProfile = ({ location, data }: IPreviewProfile) => {
           <p>All profile details are saved</p>
         </SectionMessage>
       )}
-      <h1>Your Profile</h1>
+      <PageTitle>Your Profile</PageTitle>
       <AvatarContainer>
         <Avatar src={data?.avatar || ""} size="xxlarge" />
       </AvatarContainer>
@@ -98,8 +99,8 @@ const PreviewProfile = ({ location, data }: IPreviewProfile) => {
                   <dd>{data.dob}</dd>
                 </DataRow>
                 <DataRow>
-                  <dt className="label">{FIELDS.ABOUT.label}:</dt>
-                  <dd className="value">{data.about}</dd>
+                  <dt>{FIELDS.ABOUT.label}:</dt>
+                  <dd>{data.about}</dd>
                 </DataRow>
               </dl>
               <footer>

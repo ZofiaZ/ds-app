@@ -24,8 +24,13 @@ const NavItem = styled.li`
   padding: 10px;
   margin: 0;
   font-size: ${fontSizes.large};
-  .active {
+
+  a {
     color: ${colors.accent};
+  }
+
+  .active {
+    color: ${colors.dark};
   }
 `;
 
