@@ -3,7 +3,7 @@ import { AvatarPickerDialog } from "@atlaskit/media-avatar-picker";
 import Avatar from "@atlaskit/avatar";
 import { ModalTransition } from "@atlaskit/modal-dialog";
 import Button from "@atlaskit/button";
-import { Field } from "@atlaskit/form";
+import { Field, HelperMessage } from "@atlaskit/form";
 import styled from "styled-components";
 import { spacings } from "../../utils/styles";
 
@@ -35,6 +35,9 @@ const AvatarPickerField: FunctionComponent<PropTypes> = ({
     <Field name={name} defaultValue={defaultValue} label={label}>
       {({ fieldProps }) => (
         <>
+          <HelperMessage>
+            You can add image/jpeg and image/png mime types up to 10Mib
+          </HelperMessage>
           <AvatarContainer>
             <Avatar src={imageDataURI || defaultValue} size="xlarge" />
             <Button
