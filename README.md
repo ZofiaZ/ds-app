@@ -4,7 +4,7 @@
 2. Run `yarn` in the project directory to install dependencies
 3. Run `yarn start` to run the project in development mode and open [http://localhost:3000](http://localhost:3000) to view app in the browser.
 
-See [./docs/notes.md](/blob/main/docs/notes.md) for decisions list and remaining TODO items.
+See [./docs/notes.md](/docs/notes.md) for decisions list and remaining TODO items.
 
 # Longer Description of Create React App Project:
 
