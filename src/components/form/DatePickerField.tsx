@@ -16,7 +16,6 @@ const DatePickerField: FunctionComponent<PropTypes> = ({
 }) => (
   <Field name={name} label={label} defaultValue={defaultValue} isRequired>
     {({ fieldProps, error }) => {
-      console.log("error", error, fieldProps);
       return (
         <>
           <DatePicker {...fieldProps} locale="en-GB" />
