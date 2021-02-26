@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Quck Setup:
+
+1. Make sure you have `yarn` installed
+2. Run `yarn` in the project directory to install dependencies
+3. Run `yarn start` to run the project in development mode and open [http://localhost:3000](http://localhost:3000) to view app in the browser.
+
+See [./docs/notes.md]() for decisions list and remaining TODO items.
+
+# Longer Description of Create React App Project:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
