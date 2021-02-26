@@ -42,7 +42,7 @@ const AvatarPickerField: FunctionComponent<PropTypes> = ({
                 setIsOpen(true);
               }}
             >
-              {imageDataURI ? "change image" : "add image"}
+              {imageDataURI || defaultValue ? "change image" : "add image"}
             </Button>
           </AvatarContainer>
           <ModalTransition>

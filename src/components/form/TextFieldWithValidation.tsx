@@ -79,7 +79,6 @@ const TextFieldWithValidation: FunctionComponent<PropTypes> = ({
       {({ fieldProps, error }) => {
         return (
           <>
-            {helpText && <HelperMessage>{helpText}</HelperMessage>}
             <TextField
               {...fieldProps}
               autoComplete={autocomplete}
@@ -87,6 +86,8 @@ const TextFieldWithValidation: FunctionComponent<PropTypes> = ({
               type={type}
               inputMode={inputmode}
             />
+            {helpText && <HelperMessage>{helpText}</HelperMessage>}
+
             {isBlurred && error === VALIDATION_TYPES.TOO_SHORT && (
               <ErrorMessage>
                 {label} needs to have minimum {minCharacters} characters

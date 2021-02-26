@@ -34,6 +34,10 @@ const FormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  label {
+    margin-top: 10px;
+  }
 `;
 
 const EditProfile: FunctionComponent<IEditProfile> = ({
